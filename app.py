@@ -18,7 +18,7 @@ app = Flask(__name__)
 camera = cv2.VideoCapture(0)
 
 def cloud_compute_worker():
-    while True: # fixme: provide alternative if user cannot connect to webcam
+    while True:
         success, frame = camera.read()
         if success:
             _, encoded_image = cv2.imencode('.jpg', frame)
