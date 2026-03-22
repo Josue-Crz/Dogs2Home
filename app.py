@@ -18,7 +18,7 @@ app = Flask(__name__)
 camera = cv2.VideoCapture(0)
 
 def cloud_compute_worker():
-    while True:
+    while True: # fixme: provide alternative if user cannot connect to webcam
         success, frame = camera.read()
         if success:
             _, encoded_image = cv2.imencode('.jpg', frame)
@@ -33,6 +33,9 @@ def cloud_compute_worker():
                     'object': label,
                     'timestamp': time.strftime("%H:%M:%S")
                 })
+        elif (not success):
+            DatabaseNotAvaiable()
+            
         time.sleep(5) 
 
 threading.Thread(target=cloud_compute_worker, daemon=True).start() # for clarification: this thread runs in the background for camera sync to the Google Cloud API
