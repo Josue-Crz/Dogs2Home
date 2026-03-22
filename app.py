@@ -35,7 +35,7 @@ def cloud_compute_worker():
                 })
         time.sleep(5) 
 
-threading.Thread(target=cloud_compute_worker, daemon=True).start()
+threading.Thread(target=cloud_compute_worker, daemon=True).start() # for clarification: this thread runs in the background for camera sync to the Google Cloud API
 
 @app.route('/')
 def index():
