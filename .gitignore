@@ -1,3 +1,6 @@
 serviceAccountKey.json
 .env
 venv
+todo.txt
+autoTrainAI.py
+trainingData
