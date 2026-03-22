@@ -1,6 +1,10 @@
 # Dogs2Home
 ### "Leave no surprises, correct behavior one detection at a time."
 Dog2Home is a full-stack Internet of Things (IoT) application built in under 24 hours. Inspired by the Ring home monitoring system, this project focuses on high-stakes pet monitoring. By leveraging Google Cloud Vision, Dog2Home identifies when your dog is causing damage to furniture and provides instantaneous alerts, ensuring you can intervene before the stuffing hits the floor.
+
+
+Find Hayward Hacks Presentation Slide Deck [here](https://www.canva.com/design/DAHEm8mv000/W7ceGpPf4c_I5fWlWSH9lQ/edit?utm_content=DAHEm8mv000&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton 'Hayward Hacks 2.0 2026')
+
 #
 ### Key Features
 Real-Time Detection: Utilizes Google Cloud Vision API to analyze video frames for specific destructive behaviors or damaged objects.
