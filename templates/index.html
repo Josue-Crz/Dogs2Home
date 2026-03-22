@@ -2,19 +2,19 @@
 <html>
 <head>
     <title>Dogs2Home</title>
-    <link rel="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 </head>
 <body>
-    <header>
+    <header class="displayTitle">
         <h1>Live Display</h1>
     </header>
 
     <img src="/video_feed" width="600" style="border: 5px solid #333;">
     
 
-    <article>
+    <article class="commonQA">
         <strong>Common Q&A:</strong>
         <strong>Lorem ipsum dolor, sit amet consectetur 
                 adipisicing elit. Accusantium quam, mollitia 
@@ -25,7 +25,7 @@
 
     
 
-    <footer>
+    <footer id="contribute">
         <strong>Contributor(s): Josue Cruz</strong>
     </footer>
 
