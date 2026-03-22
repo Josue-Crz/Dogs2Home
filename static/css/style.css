@@ -1,28 +1,175 @@
+/* Dogs2Home — blue & brown theme (CSS only) */
+:root {
+    --blue-deep: #1a3a52;
+    --blue-mid: #2c5f8d;
+    --blue-soft: #e8f0f7;
+    --brown-rich: #5c3d2e;
+    --brown-mid: #8b6914;
+    --brown-light: #c4a574;
+    --cream: #f7f2ea;
+    --cream-dark: #ebe3d8;
+    --text-on-dark: #f7f2ea;
+    --text-body: #2d2419;
+    --shadow: 0 8px 24px rgba(26, 58, 82, 0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+}
+
 body {
-    font-family: sans-serif;
-    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    padding: clamp(1rem, 4vw, 2rem);
+    font-family:
+        "Segoe UI",
+        system-ui,
+        -apple-system,
+        sans-serif;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text-body);
+    background:
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(44, 95, 141, 0.18), transparent 50%),
+        linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+    /* Camera + Q&A share one row; contributors span full width below */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1rem;
+    row-gap: 1rem;
 }
 
+/* Site title block (class on first heading section) */
+.generalTitle {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--brown-rich) 0%, #7a523f 50%, var(--brown-mid) 100%);
+    color: var(--text-on-dark);
+    padding: 1.25rem 1.5rem;
+    margin: 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    min-width: 0;
+}
 
+.generalTitle h1 {
+    margin: 0;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Shared: headings / content in elements with class displayTitle */
 .displayTitle {
-    background-color: red;
-    color: white;
-    padding: 10px;
-    margin-bottom: 10px;
+    text-align: left;
 }
 
+/* “Live Display” bar */
+header.displayTitle {
+    grid-column: 1 / -1;
+    background: linear-gradient(90deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+    color: var(--text-on-dark);
+    padding: 0.85rem 1.25rem;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px rgba(26, 58, 82, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 0;
+}
+
+header.displayTitle h1 {
+    margin: 0;
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Video area — left column of the camera + Q&A row */
+aside.displayTitle {
+    grid-column: 1;
+    background: #fff;
+    color: var(--text-body);
+    padding: 1rem;
+    margin: 0;
+    display: block;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--brown-light);
+    max-width: none;
+    min-width: 0;
+}
+
+aside.displayTitle img {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: var(--radius-sm) !important;
+    border: 3px solid var(--blue-mid) !important;
+    box-shadow: 0 4px 16px rgba(44, 95, 141, 0.2);
+}
+
+/* Q&A — right column of the same row */
 .commonQA {
-    background-color: red;
-    color: white;
-    padding: 10px;
-    margin-bottom: 10px;
+    grid-column: 2;
+    background: linear-gradient(180deg, var(--blue-soft) 0%, #fff 40%);
+    color: var(--text-body);
+    padding: 1.25rem 1.5rem;
+    margin: 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(44, 95, 141, 0.2);
+    border-left: 4px solid var(--brown-mid);
+    max-width: none;
+    min-width: 0;
 }
 
+.commonQA strong {
+    color: var(--blue-deep);
+    font-weight: 700;
+}
+
+/* Footer — full width under the camera + Q&A row */
 #contribute {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 15px 20px;
-    cursor: pointer;
-    font-size: 16px;
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--brown-rich) 0%, #4a3228 100%);
+    color: var(--text-on-dark);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1rem 1.25rem;
+    cursor: default;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 12px rgba(92, 61, 46, 0.2);
+    max-width: none;
+    min-width: 0;
+}
+
+/* Stack camera above Q&A on narrow viewports */
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    aside.displayTitle,
+    .commonQA {
+        grid-column: 1 / -1;
+    }
+}
+
+#contribute strong {
+    font-weight: 600;
+    opacity: 0.95;
 }
