@@ -35,30 +35,28 @@
         <strong>Contributor(s): Josue Cruz</strong>
     </footer>
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "...",
-            authDomain: "...",
-            databaseURL: "https://...",
-            projectId: "...",
-            storageBucket: "...",
-            messagingSenderId: "...",
-            appId: "..."
-        };
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        
+        
+        const firebaseConfig = {{ firebaseConfigInject | tojson | safe }};
+        console.log(firebaseConfig);
 
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
-        database.ref('live_status').on('value', (snapshot) => {
+        const statusRef = ref(database, 'live_status');
+
+        onValue(statusRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
-                document.getElementById('detection-text').innerText = data.object;
-                console.log("Update received:", data.object);
+                console.log("Update received:", data);
+            } else {
+                console.log("No data available at this path.");
             }
-            else{
-                document.getElementById('detection-text').innerText = "Unable to detect object";
-                console.log("Update not received", data.object)
-            }
+        }, (error) => {
+            console.error("Database read failed: ", error);
         });
     </script>
 </body>

@@ -3,6 +3,7 @@ import threading
 import time
 import firebase_admin
 import os
+from DataBaseException import DatabaseNotAvaiable
 from firebase_admin import credentials, db
 from google.cloud import vision
 from flask import Flask, render_template, Response
@@ -42,7 +43,18 @@ threading.Thread(target=cloud_compute_worker, daemon=True).start() # for clarifi
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    fireBaseFrontEndConfig = {
+        "apiKey": os.getenv('SECRET_KEY'),
+        "authDomain": os.getenv('AUTH_DOMAIN'),
+        "databaseURL": os.getenv('DATABASE_URL'),
+        "projectId": os.getenv('PROJECT_ID'),
+        "storageBucket": os.getenv('STORAGE_BUCKET'),
+        "messagingSenderId": os.getenv('MESSAGE_SEND_ID'),
+        "appId": os.getenv('APP_ID'),
+        "measurementId": os.getenv('MESASURE_ID')
+    }
+
+    return render_template('index.html', firebaseConfigInject=fireBaseFrontEndConfig) # injecting from the backend to frontend the configuration data
 
 @app.route('/video_feed')
 def video_feed():
